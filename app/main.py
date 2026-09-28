@@ -1,13 +1,22 @@
 from fastapi import FastAPI
 
+from app.api.routes import router
+
+from app.core.config import get_settings
+
+from app.core.logging import setup_logging
+
+
+setup_logging()
+
+
+settings = get_settings()
+
+
 app = FastAPI(
-    title="Devassist RAG API",
-    description="AI-powered technical documentation assistant",
-    version = "1.0.0"
+    title=settings.PROJECT_NAME,
+    version=settings.VERSION
 )
 
-@app.get("/")
-def home():
-    return{
-        "message": "DevAssist RAG API is running"
-    }
+
+app.include_router(router)
