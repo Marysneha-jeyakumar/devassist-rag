@@ -12,6 +12,10 @@ class Settings(BaseSettings):
     QDRANT_URL: str = "http://localhost:6333"
     QDRANT_COLLECTION: str = "research_documents"
 
+    CHUNK_SIZE_TOKENS: int = 600
+
+    CHUNK_OVERLAP_TOKENS: int = 100
+    
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
